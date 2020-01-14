@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grommet } from 'grommet';
 
 import Sidebar from './components/Sidebar';
+import PostMain from './components/Sidebar';
+import PostPreview from './components/Sidebar';
 
 const theme = {
   global: {
@@ -13,31 +15,22 @@ const theme = {
   },
 };
 
-const fetchData = () => {
-  return fetch('https://www.reddit.com/top.json')
-    .then(res => {
-      return res.json();
-    })
-    .then(res => res.data);
-};
-
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      return await fetch('https://www.reddit.com/top.json')
+        .then(res => res.json())
+        .then(res => res.data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Grommet theme={theme}>
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      {/* <Sidebar /> */}
+      <Sidebar />
+      <PostMain />
+      <PostPreview />
     </Grommet>
   );
 }
