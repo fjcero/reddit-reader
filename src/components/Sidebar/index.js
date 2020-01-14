@@ -1,23 +1,25 @@
 import React from 'react';
-import { Layer, Box, Button } from 'grommet';
+import { Box, Button } from 'grommet';
 import { FormClose } from 'grommet-icons';
+import Styles from './styles';
 
 function Sidebar() {
   return (
-    <Layer>
-      <Box
-        background="light-2"
-        tag="header"
-        justify="end"
-        align="center"
-        direction="row"
-      >
+    <Styles.Sidebar
+      modal={false}
+      onClickOutside={() => null}
+      onEsc={() => null}
+      plain
+      position="top-left"
+    >
+      <Box fill>
         <Button icon={<FormClose />} />
+        <Box fill overflow={{ vertical: 'scroll' }}>
+          List
+        </Box>
+        <Button primary label="Mark all as read" margin="small" />
       </Box>
-      <Box fill background="light-2" align="center" justify="center">
-        sidebar
-      </Box>
-    </Layer>
+    </Styles.Sidebar>
   );
 }
 

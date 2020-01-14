@@ -14,4 +14,6 @@
 3. Added all the dependencies
 4. Create basic components for the views
 5. Fetch Data with Reddit JSON API using plain `fetch`
-6. Connect data to components using basic state. Will later be replaced by Redux.
+6. Styled sidebard
+7. Connect data to components using basic state. Will later be replaced by Redux.
+8. 
