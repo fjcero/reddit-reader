@@ -7,6 +7,28 @@
 - Styled Components
 - Redux
 
+## Requirements
+
+- [ ] Pagination support
+- [ ] Saving pictures in the picture gallery
+- [ ] App state-preservation/restoration
+- [ ] Indicator of unread/read post (updated status, after post it’s selected)
+- [ ] Dismiss Post Button (remove the cell from list. Animations required)
+- [ ] Dismiss All Button (remove all posts. Animations required)
+- [x] Support split layout (left side: all posts / right side: detail post)
+- [x] Responsive design
+
+## What to show
+
+```
+- Title (at its full length, so take this into account when sizing your cells)
+- Author
+- entry date, following a format like “x hours ago” 
+- A thumbnail for those who have a picture.
+- Number of comments
+- Unread status
+```
+
 ## Methodology
 
 1. Created app with `create-react-app` boilerplate
@@ -17,7 +39,7 @@
 6. Styled Sidebar
 7. Connect data to components using basic state. Will later be replaced by Redux.
 8. Styled Sidebar > List Item
-9. Styled Main Content
+9. Styled Main Content 
 
 ## Reddit API
 

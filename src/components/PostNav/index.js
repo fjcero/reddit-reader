@@ -15,17 +15,34 @@ const PostThumbnail = ({ post }) => {
   return <Image src={post.thumbnail} a11yTitle={post.title} />;
 };
 
+const ReadIndicator = ({ read }) => (
+  <div
+    style={{
+      background: read ? 'none' : 'red',
+      width: 18,
+      height: 18,
+      minWidth: 18,
+      minHeight: 18,
+      marginRight: 8,
+      display: 'inline-block',
+      borderRadius: '50%',
+      border: '2px solid red',
+    }}
+  ></div>
+);
+
 const PostNav = ({ post }) => (
   <Box flex={false} height="250px" width="100%">
     <Box margin="small">
+      <Box align="center" direction="row">
+        <ReadIndicator />
+        <Text truncate width="280px">
+          {post.data.title}
+        </Text>
+      </Box>
       <Box direction="row">
         <PostThumbnail post={post.data} />
-        <Box>
-          <Text truncate width="100px">
-            {post.data.title}
-          </Text>
-          <Text>{post.data.description}</Text>
-        </Box>
+        <Text>{post.data.description}</Text>
       </Box>
       <Box>
         <Text>{post.data.num_comments}</Text>
