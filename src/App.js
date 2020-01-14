@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Grommet } from 'grommet';
+import React, { useState, useEffect } from 'react';
+import { Grommet, Main } from 'grommet';
 
 import Sidebar from './components/Sidebar';
 import PostMain from './components/PostMain';
@@ -20,11 +20,13 @@ const theme = {
 };
 
 function App() {
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      return await fetch('https://www.reddit.com/top.json')
+      const posts = await fetch('https://www.reddit.com/top.json')
         .then(res => res.json())
-        .then(res => res.data);
+        .then(res => res.data.children);
+      setPosts(posts);
     };
 
     fetchData();
@@ -32,9 +34,11 @@ function App() {
 
   return (
     <Grommet theme={theme}>
-      <Sidebar />
-      <PostMain />
-      <PostPreview />
+      <Sidebar posts={posts} />
+      <Main>
+        <PostMain />
+        <PostPreview />
+      </Main>
     </Grommet>
   );
 }

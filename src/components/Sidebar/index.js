@@ -2,20 +2,32 @@ import React from 'react';
 import { Box, Button } from 'grommet';
 import { FormClose } from 'grommet-icons';
 import Styles from './styles';
+import PostNav from '../PostNav';
 
-function Sidebar() {
+function Sidebar({ posts }) {
   return (
     <Styles.Sidebar
       modal={false}
       onClickOutside={() => null}
       onEsc={() => null}
       plain
-      position="top-left"
+      position="left"
+      fill="vertical"
     >
       <Box fill>
-        <Button icon={<FormClose />} />
-        <Box fill overflow={{ vertical: 'scroll' }}>
-          List
+        <Box>
+          <Button icon={<FormClose />} />
+        </Box>
+        <Box
+          flex
+          overflow={{ vertical: 'scroll' }}
+          alignContent="start"
+        >
+          {posts &&
+            posts.length > 0 &&
+            posts.map(post => (
+              <PostNav key={post.data.id + post.data.created_at} post={post} />
+            ))}
         </Box>
         <Button primary label="Mark all as read" margin="small" />
       </Box>
