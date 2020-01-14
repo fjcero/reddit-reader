@@ -2,17 +2,18 @@
 
 ## Dependencies
 
-- React ^16.12
+- React
 - Grommet v2
 - Styled Components
-- Redux
+- React Redux + Redux Persit for state management and restoration
+- React Springs for animations
 
 ## Requirements
 
 - [ ] Pagination support
 - [ ] Saving pictures in the picture gallery
-- [ ] App state-preservation/restoration
-- [ ] Indicator of unread/read post (updated status, after post it’s selected)
+- [x] App state-preservation/restoration
+- [x] Indicator of unread/read post (updated status, after post it’s selected)
 - [ ] Dismiss Post Button (remove the cell from list. Animations required)
 - [ ] Dismiss All Button (remove all posts. Animations required)
 - [x] Support split layout (left side: all posts / right side: detail post)
