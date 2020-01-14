@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grommet, Main } from 'grommet';
 
-import Sidebar from './components/Sidebar';
-import PostMain from './components/PostMain';
-import PostPreview from './components/PostPreview';
+import Sidebar from '../components/Sidebar';
+import PostMain from '../components/PostMain';
+import PostPreview from '../components/PostPreview';
 
 const theme = {
   global: {
@@ -20,6 +20,7 @@ const theme = {
 };
 
 function App() {
+  const [showSidebar, setShowSidebar] = useState(true);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -34,10 +35,15 @@ function App() {
 
   return (
     <Grommet theme={theme}>
-      <Sidebar posts={posts} />
-      <Main>
+      {showSidebar ? <Sidebar posts={posts} /> : null}
+      <Main
+        style={{
+          width: showSidebar ? 'calc(100% - 320px)' : '100%',
+          marginLeft: showSidebar ? 320 : 0,
+        }}
+      >
         <PostMain />
-        <PostPreview />
+        {posts && posts.length > 0 && <PostPreview post={posts[0]} />}
       </Main>
     </Grommet>
   );
