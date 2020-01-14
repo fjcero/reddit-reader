@@ -14,15 +14,11 @@ function Sidebar({ posts }) {
       position="left"
       fill="vertical"
     >
-      <Box fill>
+      <Box fill elevation="large">
         <Box>
           <Button icon={<FormClose />} />
         </Box>
-        <Box
-          flex
-          overflow={{ vertical: 'scroll' }}
-          alignContent="start"
-        >
+        <Box flex overflow={{ vertical: 'scroll' }} alignContent="start">
           {posts &&
             posts.length > 0 &&
             posts.map(post => (
