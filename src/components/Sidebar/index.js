@@ -20,3 +20,5 @@ function Sidebar() {
     </Layer>
   );
 }
+
+export default Sidebar;
