@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grommet } from 'grommet';
 
+import Sidebar from './components/Sidebar';
+
 const theme = {
   global: {
     font: {
@@ -9,6 +11,14 @@ const theme = {
       height: '20px',
     },
   },
+};
+
+const fetchData = () => {
+  return fetch('https://www.reddit.com/top.json')
+    .then(res => {
+      return res.json();
+    })
+    .then(res => res.data);
 };
 
 function App() {
@@ -27,6 +37,7 @@ function App() {
           Learn React
         </a>
       </header>
+      {/* <Sidebar /> */}
     </Grommet>
   );
 }
