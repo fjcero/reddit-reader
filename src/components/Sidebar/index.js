@@ -22,7 +22,7 @@ function Sidebar({ posts }) {
           {posts &&
             posts.length > 0 &&
             posts.map(post => (
-              <PostNav key={post.data.id + post.data.created_at} post={post} />
+              <PostNav key={`${post.type}_${post.data.id}`} post={post} />
             ))}
         </Box>
         <Button primary label="Mark all as read" margin="small" />

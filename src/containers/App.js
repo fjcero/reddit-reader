@@ -22,9 +22,10 @@ const theme = {
 function App() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
-      const posts = await fetch('https://www.reddit.com/top.json')
+      const posts = await fetch('https://www.reddit.com/top.json?limit=50')
         .then(res => res.json())
         .then(res => res.data.children);
       setPosts(posts);
