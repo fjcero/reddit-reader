@@ -16,16 +16,15 @@ const RedditReaderReducer = (state = initialState, action) => {
     case POSTS:
       return { ...state, posts: action.posts };
     case CURRENT:
-      console.log('CURRENT', { action });
       return { ...state, current: action.current };
     case TOGGLE_AS_READ:
-      console.log({ action });
+      console.log('read', { action });
       return state;
     case DISMISS_POST:
-      console.log({ action });
+      console.log('dismiss', { action });
       return state;
     case DISMISS_ALL_POSTS:
-      console.log({ action });
+      console.log('dismiss_all', { action });
       return state;
     default:
       return state;

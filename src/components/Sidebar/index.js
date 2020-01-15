@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Box, Button } from 'grommet';
 import { FormClose } from 'grommet-icons';
 import Styles from './styles';
+import { dismissAllPosts } from '../../modules/RedditReader/actions';
 import { PostNav } from '../PostNav';
 
 function Sidebar({ posts }) {
+  const dispatch = useDispatch();
+
   return (
     <Styles.Sidebar
       modal={false}
@@ -21,11 +25,14 @@ function Sidebar({ posts }) {
         <Box flex overflow={{ vertical: 'scroll' }} alignContent="start">
           {posts &&
             posts.length > 0 &&
-            posts.map(post => (
-              <PostNav key={`${post.kind}_${post.data.id}`} post={post} />
-            ))}
+            posts.map(post => <PostNav post={post} key={post.data.id} />)}
         </Box>
-        <Button primary label="Dismiss all" margin="small" />
+        <Button
+          primary
+          label="Dismiss all"
+          margin="small"
+          onClick={() => dispatch(dismissAllPosts())}
+        />
       </Box>
     </Styles.Sidebar>
   );

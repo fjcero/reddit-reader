@@ -14,8 +14,8 @@
 - [ ] Saving pictures in the picture gallery
 - [x] App state-preservation/restoration
 - [x] Indicator of unread/read post (updated status, after post it’s selected)
-- [ ] Dismiss Post Button (remove the cell from list. Animations required)
-- [ ] Dismiss All Button (remove all posts. Animations required)
+- [x] Dismiss Post Button (remove the cell from list. Animations required)
+- [x] Dismiss All Button (remove all posts. Animations required)
 - [x] Support split layout (left side: all posts / right side: detail post)
 - [x] Responsive design
 
@@ -41,6 +41,9 @@
 7. Connect data to components using basic state. Will later be replaced by Redux.
 8. Styled Sidebar > List Item
 9. Styled Main Content 
+10. Add support to Redux
+11. Connect all the components to Redux
+12. Refactor components: cleanup code
 
 ## Reddit API
 

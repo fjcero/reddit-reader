@@ -1,3 +1,4 @@
+// import * as R from 'ramda';
 export const CURRENT = 'REDDIT__CURRENT_POST';
 export const POSTS = 'REDDIT__POSTS';
 export const TOGGLE_AS_READ = 'REDDIT__TOGGLE_AS_READ';
@@ -20,14 +21,31 @@ export const setCurrent = current => ({
   current,
 });
 
-export const dismissPost = postId => ({
-  type: DISMISS_POST,
-});
+export const dismissPost = postId => (dispatch, getState) => {
+  const posts = getState().reddit.posts.slice();
+  const postIdx = posts.findIndex(p => p.data.id === postId);
+  const post = { ...posts[postIdx], dismissed: true };
 
-export const dismissAllPosts = () => ({
-  type: DISMISS_ALL_POSTS,
-});
+  posts.splice(postIdx, 1, post);
 
-export const togglePostAsRead = postId => ({
-  type: TOGGLE_AS_READ,
-});
+  dispatch(setPosts(posts));
+};
+
+export const dismissAllPosts = () => (dispatch, getState) => {
+  const posts = getState().reddit.posts.slice();
+  const newPosts = posts.map(post => ({ ...post, dismissed: true }));
+
+  dispatch(setPosts(newPosts));
+  dispatch(setCurrent(null))
+};
+
+
+export const togglePostAsRead = postId => (dispatch, getState) => {
+  const posts = getState().reddit.posts.slice();
+  const postIdx = posts.findIndex(p => p.data.id === postId);
+  const post = { ...posts[postIdx], read: !posts[postIdx].read };
+
+  posts.splice(postIdx, 1, post);
+
+  dispatch(setPosts(posts));
+};
