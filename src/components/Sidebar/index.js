@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Box, Button } from 'grommet';
+import { Box, Button, Text } from 'grommet';
 import { FormClose } from 'grommet-icons';
 import Styles from './styles';
 import { dismissAllPosts } from '../../modules/RedditReader/actions';
@@ -19,8 +19,9 @@ function Sidebar({ posts }) {
       fill="vertical"
     >
       <Box fill elevation="large">
-        <Box>
+        <Box flex={false} direction="row" align="center" height="48px">
           <Button icon={<FormClose />} />
+          <Text>Reddit Posts</Text>
         </Box>
         <Box flex overflow={{ vertical: 'scroll' }} alignContent="start">
           {posts &&

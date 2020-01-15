@@ -15,6 +15,7 @@ const ReadIndicator = ({ isRead, onClick }) => (
       display: 'inline-block',
       borderRadius: '50%',
       border: '2px solid #5DC8FD',
+      marginTop: 6
     }}
   />
 );

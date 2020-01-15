@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Box, Button, Text } from 'grommet';
 import { useTransition, animated } from 'react-spring';
 import { Close, ChatOption } from 'grommet-icons';
+import { fromUnixTime, formatDistanceToNow } from 'date-fns';
 import {
   setCurrent,
   dismissPost,
@@ -52,7 +53,7 @@ const PostNav = ({ post }) => {
               onClick={() => dispatch(setCurrent(post.data))}
             >
               <Box margin="small">
-                <Box align="center" direction="row" style={{ marginBottom: 8 }}>
+                <Box direction="row" style={{ marginBottom: 8 }}>
                   <ReadIndicator
                     isRead={post.read}
                     onClick={e => {
@@ -60,9 +61,16 @@ const PostNav = ({ post }) => {
                       dispatch(togglePostAsRead(post.data.id));
                     }}
                   />
-                  <Text truncate width="280px" weight={600}>
-                    {post.data.title}
-                  </Text>
+                  <Box>
+                    <Text truncate width="280px" weight={600}>
+                      {post.data.title}
+                    </Text>
+                    <Text size="small">
+                      {formatDistanceToNow(fromUnixTime(post.data.created), {
+                        addSuffix: false,
+                      })}
+                    </Text>
+                  </Box>
                 </Box>
                 <Box
                   direction="row"

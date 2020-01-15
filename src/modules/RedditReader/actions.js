@@ -20,7 +20,7 @@ export const setPosts = posts => {
 
 export const setCurrent = current => dispatch => {
   if (current) {
-    dispatch(togglePostAsRead(current.id));
+    dispatch(markPostAsRead(current.id));
   }
 
   dispatch({
@@ -51,6 +51,16 @@ export const togglePostAsRead = postId => (dispatch, getState) => {
   const posts = getState().reddit.posts.slice();
   const postIdx = posts.findIndex(p => p.data.id === postId);
   const post = { ...posts[postIdx], read: !posts[postIdx].read };
+
+  posts.splice(postIdx, 1, post);
+
+  dispatch(setPosts(posts));
+};
+
+export const markPostAsRead = postId => (dispatch, getState) => {
+  const posts = getState().reddit.posts.slice();
+  const postIdx = posts.findIndex(p => p.data.id === postId);
+  const post = { ...posts[postIdx], read: true };
 
   posts.splice(postIdx, 1, post);
 
