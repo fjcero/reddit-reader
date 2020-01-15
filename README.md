@@ -10,15 +10,17 @@
 
 ## Requirements
 
-- [ ] Pagination support
-- [ ] Saving pictures in the picture gallery
+- [x] Responsive design
+- [x] Support split layout (left side: all posts / right side: detail post)
 - [x] Mark as read
 - [x] App state-preservation/restoration
 - [x] Indicator of unread/read post (updated status, after post it’s selected)
 - [x] Dismiss Post Button (remove the cell from list. Animations required)
 - [x] Dismiss All Button (remove all posts. Animations required)
-- [x] Support split layout (left side: all posts / right side: detail post)
-- [x] Responsive design
+- [x] Pagination support
+- [ ] Hide Sidebar
+- [ ] Loading
+- [ ] Saving pictures in the picture gallery
 
 ## What to show
 

@@ -1,14 +1,39 @@
-// import * as R from 'ramda';
+export const LOAD_MORE = 'REDDIT__LOAD_MORE_POSTS';
 export const CURRENT = 'REDDIT__CURRENT_POST';
 export const POSTS = 'REDDIT__POSTS';
 export const TOGGLE_AS_READ = 'REDDIT__TOGGLE_AS_READ';
 export const DISMISS_POST = 'REDDIT__DISMISS_POST';
 export const DISMISS_ALL_POSTS = 'REDDIT__DISMISS_ALL_POSTS';
 
-export const loadPosts = ({ limit } = { limit: 50 }) => dispatch => {
-  return fetch(`https://www.reddit.com/top.json?limit=${limit}`)
+export const loadPosts = ({ limit, before } = { limit: 50 }) => dispatch => {
+  const params = new URLSearchParams();
+  params.append('limit', limit || 50);
+  if (before) {
+    params.append('before', before);
+  }
+
+  return fetch(`https://www.reddit.com/top.json?${params.toString()}`)
     .then(res => res.json())
     .then(res => dispatch(setPosts(res.data.children)));
+};
+
+export const fetchMorePosts = ({ limit, before } = { limit: 50 }) => dispatch => {
+  const params = new URLSearchParams();
+  params.append('limit', limit || 50);
+  if (before) {
+    params.append('before', before);
+  }
+
+  return fetch(`https://www.reddit.com/top.json?${params.toString()}`)
+    .then(res => res.json())
+    .then(res => dispatch(loadMorePosts(res.data.children)));
+};
+
+export const loadMorePosts = posts => {
+  return {
+    type: LOAD_MORE,
+    posts,
+  };
 };
 
 export const setPosts = posts => {
