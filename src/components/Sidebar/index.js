@@ -14,9 +14,7 @@ function Sidebar() {
   const posts = useSelector(store => store.reddit.posts);
 
   const onMore = () => {
-    const latest = posts[posts.length - 1];
-    const id = `${latest.kind}_${latest.data.id}`;
-    dispatch(fetchMorePosts({ before: id }));
+    dispatch(fetchMorePosts());
   };
 
   return (

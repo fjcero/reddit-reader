@@ -4,30 +4,46 @@ export const POSTS = 'REDDIT__POSTS';
 export const TOGGLE_AS_READ = 'REDDIT__TOGGLE_AS_READ';
 export const DISMISS_POST = 'REDDIT__DISMISS_POST';
 export const DISMISS_ALL_POSTS = 'REDDIT__DISMISS_ALL_POSTS';
+export const UPDATE_PAGINATION = 'REDDIT__PAGINATION';
 
-export const loadPosts = ({ limit, before } = { limit: 50 }) => dispatch => {
+export const loadPosts = ({ limit, after } = { limit: 50 }) => dispatch => {
   const params = new URLSearchParams();
   params.append('limit', limit || 50);
-  if (before) {
-    params.append('before', before);
+  if (after) {
+    params.append('before', after);
   }
 
   return fetch(`https://www.reddit.com/top.json?${params.toString()}`)
     .then(res => res.json())
-    .then(res => dispatch(setPosts(res.data.children)));
+    .then(res => {
+      const { children, ...pagination } = res.data;
+      dispatch(updatePagination(pagination));
+      dispatch(setPosts(children));
+    });
 };
 
-export const fetchMorePosts = ({ limit, before } = { limit: 50 }) => dispatch => {
+export const fetchMorePosts = () => (dispatch, getState) => {
+  const pagination = getState().reddit.pagination || {};
   const params = new URLSearchParams();
-  params.append('limit', limit || 50);
-  if (before) {
-    params.append('before', before);
+  params.append('limit', 50);
+  if (pagination.after) {
+    params.append('after', pagination.after);
   }
+  console.log({ params })
 
   return fetch(`https://www.reddit.com/top.json?${params.toString()}`)
     .then(res => res.json())
-    .then(res => dispatch(loadMorePosts(res.data.children)));
+    .then(res => {
+      const { children, ...pagination } = res.data;
+      dispatch(updatePagination(pagination));
+      dispatch(loadMorePosts(children));
+    });
 };
+
+export const updatePagination = pagination => ({
+  type: UPDATE_PAGINATION,
+  pagination,
+});
 
 export const loadMorePosts = posts => {
   return {

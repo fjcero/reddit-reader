@@ -7,10 +7,12 @@ import {
   DISMISS_POST,
   DISMISS_ALL_POSTS,
   LOAD_MORE,
+  UPDATE_PAGINATION,
 } from './actions';
 
 const initialState = {
   posts: [],
+  pagination: {},
   read_posts: [],
 };
 
@@ -26,6 +28,11 @@ const RedditReaderReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.posts,
+      };
+    case UPDATE_PAGINATION:
+      return {
+        ...state,
+        pagination: action.pagination,
       };
     case LOAD_MORE:
       return {
