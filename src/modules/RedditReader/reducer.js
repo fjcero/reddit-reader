@@ -1,18 +1,31 @@
-import { POSTS, MARK_AS_READ, DISMISS_POSTS } from './actions';
+import {
+  CURRENT,
+  POSTS,
+  TOGGLE_AS_READ,
+  DISMISS_POST,
+  DISMISS_ALL_POSTS,
+} from './actions';
 
 const initialState = {
   posts: [],
+  read_posts: [],
 };
 
 const RedditReaderReducer = (state = initialState, action) => {
-  console.log('ASDASDASD')
   switch (action.type) {
     case POSTS:
-      console.log('POSTS', { action });
       return { ...state, posts: action.posts };
-    case MARK_AS_READ:
+    case CURRENT:
+      console.log('CURRENT', { action });
+      return { ...state, current: action.current };
+    case TOGGLE_AS_READ:
+      console.log({ action });
       return state;
-    case DISMISS_POSTS:
+    case DISMISS_POST:
+      console.log({ action });
+      return state;
+    case DISMISS_ALL_POSTS:
+      console.log({ action });
       return state;
     default:
       return state;

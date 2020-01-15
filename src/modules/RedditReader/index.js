@@ -5,18 +5,15 @@ import { Main, Box } from 'grommet';
 import { loadPosts } from './actions';
 
 import Sidebar from '../../components/Sidebar';
-import PostMain from '../../components/PostMain';
 import PostPreview from '../../components/PostPreview';
 
 function RedditReader({ showSidebar }) {
   const dispatch = useDispatch();
   const posts = useSelector(store => store.reddit.posts);
-  
+
   useEffect(() => {
     dispatch(loadPosts());
   }, []);
-  
-  console.log({ posts });
 
   return (
     <Main>
@@ -27,7 +24,6 @@ function RedditReader({ showSidebar }) {
           marginLeft: showSidebar ? 320 : 0,
         }}
       >
-        <PostMain />
         {posts && posts.length > 0 && <PostPreview post={posts[0]} />}
       </Box>
     </Main>
