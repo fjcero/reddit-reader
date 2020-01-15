@@ -18,7 +18,7 @@ function Sidebar({ posts }) {
       position="left"
       fill="vertical"
     >
-      <Box fill elevation="large">
+      <Box fill elevation="large" justify="start" style={{ height: '100vh' }}>
         <Box flex={false} direction="row" align="center" height="48px">
           <Button icon={<FormClose />} />
           <Text>Reddit Posts</Text>
