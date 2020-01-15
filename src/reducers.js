@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import AppReducer from './containers/App/reducer';
-import RedditReaderReducer from './containers/RedditReader/reducer';
+import AppReducer from './modules/App/reducer';
+import RedditReaderReducer from './modules/RedditReader/reducer';
 
 const reducers = combineReducers({
   app: AppReducer,
