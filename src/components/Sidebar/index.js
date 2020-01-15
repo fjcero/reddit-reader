@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button } from 'grommet';
 import { FormClose } from 'grommet-icons';
 import Styles from './styles';
-import PostNav from '../PostNav';
+import { PostNav } from '../PostNav';
 
 function Sidebar({ posts }) {
   return (
@@ -22,7 +22,7 @@ function Sidebar({ posts }) {
           {posts &&
             posts.length > 0 &&
             posts.map(post => (
-              <PostNav key={`${post.type}_${post.data.id}`} post={post} />
+              <PostNav key={`${post.kind}_${post.data.id}`} post={post} />
             ))}
         </Box>
         <Button primary label="Dismiss all" margin="small" />
