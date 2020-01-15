@@ -19,43 +19,35 @@ const PostNav = ({ post }) => {
     from: {
       opacity: 0,
       transform: 'translateX(0%)',
-      zIndex: 10,
+      zIndex: 0,
       position: 'relative',
       top: 0,
     },
     enter: {
       opacity: 1,
       transform: 'translateX(0%)',
-      zIndex: 100,
+      zIndex: 0,
       position: 'relative',
       top: 0,
     },
     leave: {
-      position: 'absolute',
       opacity: 0,
       transform: 'translateX(-100%)',
       zIndex: 101,
+      top: 0,
     },
-    config: { duration: 1000, tension: 100, friction: 200 },
+    config: { duration: 500, tension: 100, friction: 200 },
   });
 
   return transitions.map(
     ({ item, props, key }) =>
       item && (
-        <div
-          style={{ position: 'relative', height: 220, width: '100%' }}
-          key={key}
-        >
+        <div style={{ position: 'relative' }} key={key}>
           <animated.div style={props}>
             <Box
               flex={false}
               style={{
                 background: '#282A36',
-                height: 220,
-                minHeight: 220,
-                width: 320,
-                maxWidth: 320,
-                zIndex: 200,
               }}
               onClick={() => dispatch(setCurrent(post.data))}
             >

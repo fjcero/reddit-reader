@@ -12,6 +12,7 @@
 
 - [ ] Pagination support
 - [ ] Saving pictures in the picture gallery
+- [x] Mark as read
 - [x] App state-preservation/restoration
 - [x] Indicator of unread/read post (updated status, after post it’s selected)
 - [x] Dismiss Post Button (remove the cell from list. Animations required)

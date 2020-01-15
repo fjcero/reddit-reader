@@ -11,15 +11,23 @@ export const loadPosts = ({ limit } = { limit: 50 }) => dispatch => {
     .then(res => dispatch(setPosts(res.data.children)));
 };
 
-export const setPosts = posts => ({
-  type: POSTS,
-  posts,
-});
+export const setPosts = posts => {
+  return {
+    type: POSTS,
+    posts,
+  };
+};
 
-export const setCurrent = current => ({
-  type: CURRENT,
-  current,
-});
+export const setCurrent = current => dispatch => {
+  if (current) {
+    dispatch(togglePostAsRead(current.id));
+  }
+
+  dispatch({
+    type: CURRENT,
+    current,
+  });
+};
 
 export const dismissPost = postId => (dispatch, getState) => {
   const posts = getState().reddit.posts.slice();
@@ -36,9 +44,8 @@ export const dismissAllPosts = () => (dispatch, getState) => {
   const newPosts = posts.map(post => ({ ...post, dismissed: true }));
 
   dispatch(setPosts(newPosts));
-  dispatch(setCurrent(null))
+  dispatch(setCurrent());
 };
-
 
 export const togglePostAsRead = postId => (dispatch, getState) => {
   const posts = getState().reddit.posts.slice();

@@ -2,10 +2,12 @@ import React from 'react';
 import { Box, Text, Image } from 'grommet';
 import { useSelector } from 'react-redux';
 
+import NoContent from './NoContent';
+
 const PostPreview = () => {
   const post = useSelector(store => store.reddit.current);
 
-  if (!post) return;
+  if (!post) return <NoContent />;
 
   // Cleanup URLs for gif files
   let url = post.url || null;
