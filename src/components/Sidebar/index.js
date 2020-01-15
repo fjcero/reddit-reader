@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Button, Text, InfiniteScroll } from 'grommet';
 import { FormClose } from 'grommet-icons';
 import Styles from './styles';
@@ -9,8 +9,9 @@ import {
 } from '../../modules/RedditReader/actions';
 import { PostNav } from '../PostNav';
 
-function Sidebar({ posts }) {
+function Sidebar() {
   const dispatch = useDispatch();
+  const posts = useSelector(store => store.reddit.posts);
 
   const onMore = () => {
     const latest = posts[posts.length - 1];
