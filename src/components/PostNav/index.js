@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Text, Image } from 'grommet';
 import { useTransition, animated } from 'react-spring';
+import { Close, ChatOption } from 'grommet-icons';
 
 const PostThumbnail = ({ post }) => {
   // if (!post) return null;
@@ -19,15 +20,15 @@ const PostThumbnail = ({ post }) => {
 const ReadIndicator = ({ read }) => (
   <div
     style={{
-      background: read ? 'none' : 'red',
-      width: 18,
-      height: 18,
-      minWidth: 18,
-      minHeight: 18,
+      background: read ? 'none' : '#5DC8FD',
+      width: 11,
+      height: 11,
+      minWidth: 11,
+      minHeight: 11,
       marginRight: 8,
       display: 'inline-block',
       borderRadius: '50%',
-      border: '2px solid red',
+      border: '2px solid #5DC8FD',
     }}
   ></div>
 );
@@ -58,9 +59,8 @@ const PostNav = ({ post }) => {
     config: { duration: 450, tension: 100, friction: 50 },
   });
 
-  return transitions.map(({ item, props, key }) => {
-    console.log({ item, props });
-    return (
+  return transitions.map(
+    ({ item, props, key }) =>
       item && (
         <animated.div style={props} key={key}>
           <Box
@@ -70,26 +70,37 @@ const PostNav = ({ post }) => {
             style={{ background: '#282A36', ...props }}
           >
             <Box margin="small">
-              <Box align="center" direction="row">
+              <Box align="center" direction="row" style={{ marginBottom: 8 }}>
                 <ReadIndicator />
-                <Text truncate width="280px">
+                <Text truncate width="280px" weight={600}>
                   {post.data.title}
                 </Text>
               </Box>
-              <Box direction="row">
+              <Box direction="row" overflow="hidden" style={{ maxHeight: 140 }}>
                 <PostThumbnail post={post.data} />
-                <Text>{post.data.description}</Text>
+                <Text size="small" style={{ marginLeft: 12 }}>
+                  {post.data.description || post.data.title}
+                </Text>
               </Box>
-              <Box>
-                <Text>{post.data.num_comments}</Text>
-                <Button label="mark as read" onClick={() => setRead(true)} />
+              <Box direction="row" justify="between" align="center">
+                <Button
+                  plain
+                  color="#FB71BF"
+                  icon={<Close color="#FB71BF" size="small" />}
+                  label="Dismiss"
+                  onClick={() => setRead(true)}
+                  style={{ borderBottom: '1px solid currentColor' }}
+                />
+                <Box align="center" direction="row">
+                  <ChatOption color="white" />
+                  <Text>{post.data.num_comments}</Text>
+                </Box>
               </Box>
             </Box>
           </Box>
         </animated.div>
       )
-    );
-  });
+  );
 };
 
 export default PostNav;

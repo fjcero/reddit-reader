@@ -25,7 +25,7 @@ function Sidebar({ posts }) {
               <PostNav key={`${post.type}_${post.data.id}`} post={post} />
             ))}
         </Box>
-        <Button primary label="Mark all as read" margin="small" />
+        <Button primary label="Dismiss all" margin="small" />
       </Box>
     </Styles.Sidebar>
   );
