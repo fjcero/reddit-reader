@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grommet, Main } from 'grommet';
 
-import Sidebar from '../components/Sidebar';
-import PostMain from '../components/PostMain';
-import PostPreview from '../components/PostPreview';
+import Sidebar from '../../components/Sidebar';
+import PostMain from '../../components/PostMain';
+import PostPreview from '../../components/PostPreview';
 
 const theme = {
   global: {
